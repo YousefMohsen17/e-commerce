@@ -9,7 +9,7 @@ export default async function addToCart(id: string) {
       productId: id,
     };
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/cart`,
       values,
       {
         headers: {
