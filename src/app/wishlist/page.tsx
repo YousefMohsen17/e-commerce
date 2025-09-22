@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { cartContext } from "@/context/CartContext";
 import Loading from "../loading";
 import { useRouter } from "next/navigation";
+import { Wishlist as MyWishlist } from "@/types/cart.t";
 
 export default function Wishlist() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function Wishlist() {
       <h1 className="font-bold mb-4">My wish List</h1>
 
       <div className="flex flex-col gap-3">
-        {products?.map(function (product, idx: number) {
+        {(products as MyWishlist[]).map(function (product, idx: number) {
           return (
             <div key={idx} className="flex items-center gap-3">
               <Image

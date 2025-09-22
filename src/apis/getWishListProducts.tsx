@@ -1,9 +1,10 @@
+import { Wishlist } from "@/types/cart.t";
 import { getMyToken } from "@/utils/token";
-import axios from "axios";
 
 export default async function getWishListProducts() {
   const token = await getMyToken();
-  const { data } = await axios.get(
+  console.log(token);
+  const respons = await fetch(
     "https://ecommerce.routemisr.com/api/v1/wishlist",
     {
       headers: {
@@ -11,5 +12,6 @@ export default async function getWishListProducts() {
       },
     }
   );
+  const { data }: { data: Wishlist[] } = await respons.json();
   return data;
 }

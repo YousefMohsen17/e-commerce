@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { cartContext } from "@/context/CartContext";
 import Loading from "../loading";
 import Link from "next/link";
+import { ProductCart } from "@/types/cart.t";
 
 export default function Cart() {
   const {
@@ -54,7 +55,7 @@ export default function Cart() {
         </p>
       </div>
       <div className="flex flex-col gap-3">
-        {products?.map(function (product, idx: number) {
+        {(products as ProductCart[]).map(function (product, idx: number) {
           return (
             <div key={idx} className="flex items-center gap-3">
               <Image

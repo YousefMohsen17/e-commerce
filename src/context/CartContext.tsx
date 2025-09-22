@@ -2,7 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import getUserCart from "@/apis/getUserCart";
 import clearCartAction from "@/apis/clearCartAction";
-import { ProductCart } from "@/types/cart.t";
+import { ProductCart, Wishlist } from "@/types/cart.t";
 import addToCart from "@/apis/addToCart";
 import removeCartItemAction from "@/apis/removeCartItemAction";
 import updateCartAction from "@/apis/updateCartAction";
@@ -12,7 +12,7 @@ import removeWishListAction from "@/apis/removeWishListAction";
 
 type CartContextType = {
   price: number;
-  products: ProductCart[];
+  products: ProductCart[] | Wishlist[];
   numOfCartItems: number;
   loading: boolean;
   cartId: string;
@@ -48,7 +48,7 @@ export const CartContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [numOfCartItems, setNumOfCartItems] = useState(0);
-  const [products, setProducts] = useState<ProductCart[]>([]);
+  const [products, setProducts] = useState<ProductCart[] | Wishlist[]>([]);
   const [price, setPrice] = useState(0);
   const [loading, setLoading] = useState(false);
   const [cartId, setCartId] = useState("");
@@ -152,9 +152,10 @@ export const CartContextProvider = ({
     try {
       setLoading(true);
       const data = await getWishListProducts();
+      console.log(data);
 
       if (data) {
-        setProducts(data.data);
+        setProducts(data);
       }
     } catch (error) {
       console.log(error);
