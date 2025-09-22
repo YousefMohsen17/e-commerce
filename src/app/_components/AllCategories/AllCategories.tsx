@@ -1,16 +1,17 @@
 "use client";
 import getSubCat from "@/apis/getSubCat";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Category } from "@/types/category.t";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function AllCategories({ data }: { data: object }) {
-  const [content, setContent] = useState();
+export default function AllCategories({ data }: { data: Category[] }) {
+  const [content, setContent] = useState<React.ReactNode>();
   async function handleSub(id: string) {
     const myData = await getSubCat(id);
-    console.log(myData.data);
+    console.log(myData);
     setContent(
-      myData.data.map((product: any, idx: number) => (
+      myData.map((product, idx: number) => (
         <div key={idx}>
           <Card
             className="overflow-hidden group cursor-pointer transition-[box-shadow] duration-500 hover:shadow-sm hover:shadow-green-600 "
@@ -28,7 +29,7 @@ export default function AllCategories({ data }: { data: object }) {
   return (
     <>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2   ">
-        {data.data.map((product, idx: number) => (
+        {data.map((product, idx: number) => (
           <div key={idx}>
             <Card
               className="overflow-hidden group cursor-pointer transition-[box-shadow] duration-500 hover:shadow-sm hover:shadow-green-600 "

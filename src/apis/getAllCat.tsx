@@ -1,6 +1,10 @@
-import axios from "axios";
+import { Category } from "@/types/category.t";
 
-export default function getAllCat() {
-  const data = axios.get("https://ecommerce.routemisr.com/api/v1/categories");
+export default async function getAllCat() {
+  const response = await fetch(
+    "https://ecommerce.routemisr.com/api/v1/categories"
+  );
+  const { data }: { data: Category[] } = await response.json();
+
   return data;
 }
