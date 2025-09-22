@@ -5,9 +5,8 @@ import { cookies } from "next/headers";
 export async function getMyToken() {
   const tokenSession =
     process.env.NODE_ENV === "production"
-      ? "__secure-next-auth.session-token"
+      ? "__Secure-next-auth.session-token"
       : "next-auth.session-token";
-
   const sessionCookie = (await cookies()).get(tokenSession);
   if (!sessionCookie) return null;
   const secret = process.env.NEXTAUTH_SECRET;
