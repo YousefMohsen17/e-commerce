@@ -9,7 +9,7 @@ export default async function addToCart(id: string) {
       productId: id,
     };
     const response = await axios.post(
-      "https://ecommerce.routemisr.com/api/v1/cart",
+      `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
       values,
       {
         headers: {
