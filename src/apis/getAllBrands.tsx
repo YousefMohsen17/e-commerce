@@ -1,7 +1,8 @@
-import axios from "axios";
+import { Brand } from "@/types/cart.t";
 
-export default function getAllBrands() {
-  const data = axios.get("https://ecommerce.routemisr.com/api/v1/brands");
+export default async function getAllBrands() {
+  const response = await fetch("https://ecommerce.routemisr.com/api/v1/brands");
+  const { data }: { data: Brand[] } = await response.json();
 
   return data;
 }
